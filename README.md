@@ -14,6 +14,6 @@ They act as sensors and fill the app with data and informations.
 
 # Todos
 
-[ ] - Add static path server
-[ ] - Add HTML handling to the server
-[ ] - Implement each watchers for CPU , Memory and so on
+1. [ ] - Add static path server
+2. [ ] - Add HTML handling to the server
+3. [ ] - Implement each watchers for CPU , Memory and so on
