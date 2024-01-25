@@ -6,3 +6,14 @@ users, ping, tcp ports, http(s) endpoints, etc.
 
 Santinel comes with a simple web interface that allows you to see things that you need to monitor.
 And things you may not know you need to monitor. :)
+
+# Watchers
+
+Think about watchers like the Bred and Butter of the Monitoring Systems.
+They act as sensors and fill the app with data and informations.
+
+# Todos
+
+[ ] - Add static path server
+[ ] - Add HTML handling to the server
+[ ] - Implement each watchers for CPU , Memory and so on
