@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/livghit/santinel/internal/server/handlers"
 	"gorm.io/gorm"
 )
 
@@ -11,11 +12,13 @@ import (
 
 type Server struct {
 	*mux.Router
+	*gorm.DB
 }
 
 func NewServer(db *gorm.DB) *Server {
 	s := &Server{
 		Router: mux.NewRouter(),
+		DB:     db,
 	}
 	s.routes()
 
@@ -24,4 +27,5 @@ func NewServer(db *gorm.DB) *Server {
 
 func (s *Server) routes() {
 	// Here register the routes
+	s.HandleFunc("/", handlers.TestHandler()).Methods("GET")
 }
