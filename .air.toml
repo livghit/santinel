@@ -1,4 +1,4 @@
-root = "main/santinel/"
+root = "."
 testdata_dir = "testdata"
 tmp_dir = "tmp"
 
