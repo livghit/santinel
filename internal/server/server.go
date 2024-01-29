@@ -2,8 +2,9 @@ package server
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/livghit/santinel/internal/server/database"
+	"github.com/livghit/santinel/internal/server/env"
 	"github.com/livghit/santinel/internal/server/handlers"
-	"gorm.io/gorm"
 )
 
 // HTTP Server (using Standard Library and Mux)
@@ -12,13 +13,16 @@ import (
 
 type Server struct {
 	*mux.Router
-	*gorm.DB
+	*database.Database
 }
 
-func NewServer(db *gorm.DB) *Server {
+func NewServer() *Server {
+	// loading the env
+	env := env.LoadEnv()
+
 	s := &Server{
-		Router: mux.NewRouter(),
-		DB:     db,
+		Router:   mux.NewRouter(),
+		Database: database.New(env),
 	}
 	s.routes()
 
