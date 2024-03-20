@@ -1,4 +1,4 @@
-package database
+package storage
 
 import (
 	"database/sql"
@@ -8,7 +8,7 @@ import (
 )
 
 type Database struct {
-	connection *sql.DB
+	Connection *sql.DB
 	name       string
 }
 
@@ -32,7 +32,7 @@ func New(env env.Env) *Database {
 	}
 
 	return &Database{
-		connection: conn,
+		Connection: conn,
 		name:       env.DB_NAME,
 	}
 }

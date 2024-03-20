@@ -2,9 +2,10 @@ package server
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/livghit/santinel/internal/server/database"
 	"github.com/livghit/santinel/internal/server/env"
 	"github.com/livghit/santinel/internal/server/handlers"
+	"github.com/livghit/santinel/internal/server/storage"
+	"github.com/livghit/santinel/internal/watchers"
 )
 
 // HTTP Server (using Standard Library and Mux)
@@ -13,7 +14,7 @@ import (
 
 type Server struct {
 	*mux.Router
-	*database.Database
+	Storage *storage.Database
 }
 
 func NewServer() *Server {
@@ -21,8 +22,8 @@ func NewServer() *Server {
 	env := env.LoadEnv()
 
 	s := &Server{
-		Router:   mux.NewRouter(),
-		Database: database.New(env),
+		Router:  mux.NewRouter(),
+		Storage: storage.New(env),
 	}
 	s.routes()
 
@@ -31,5 +32,12 @@ func NewServer() *Server {
 
 func (s *Server) routes() {
 	// Here register the routes
-	s.HandleFunc("/", handlers.TestHandler()).Methods("GET")
+	s.HandleFunc("/server/health", handlers.ServerHealthHandler()).Methods("GET")
+	s.HandleFunc("/", handlers.DashboardHandler()).Methods("GET")
+	s.HandleFunc("/watchers/network", watchers.NetworkHandler).Methods("GET")
+	s.Storage.Connection.Ping()
+}
+
+func (s *Server) watchers(){
+ // here define the watchers we want to use ???
 }
