@@ -10,6 +10,6 @@ import (
 func main() {
 	srv := server.NewServer()
 
-	log.Printf("Server up and running on port %s", ":3000")
+	log.Printf("Server up and running :sparkle: on port %s", ":3000")
 	log.Fatal(http.ListenAndServe(":3000", srv))
 }
